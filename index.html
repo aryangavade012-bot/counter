@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Counter</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f2f5;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .count {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #2563eb;
+      margin: 1rem 0;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    .btn-decrease { background-color: #ef4444; color: white; }
+    .btn-decrease:hover { background-color: #dc2626; }
+
+    .btn-reset { background-color: #6b7280; color: white; }
+    .btn-reset:hover { background-color: #4b5563; }
+
+    .btn-increase { background-color: #10b981; color: white; }
+    .btn-increase:hover { background-color: #059669; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Counter</h1>
+    <div id="count" class="count">0</div>
+    <div class="btn-group">
+      <button class="btn-decrease" onclick="changeCount(-1)">-</button>
+      <button class="btn-reset" onclick="resetCount()">Reset</button>
+      <button class="btn-increase" onclick="changeCount(1)">+</button>
+    </div>
+  </div>
+
+  <script>
+    let value = 0;
+    const countDisplay = document.getElementById('count');
+
+    function changeCount(amount) {
+      value += amount;
+      updateDisplay();
+    }
+
+    function resetCount() {
+      value = 0;
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      countDisplay.textContent = value;
+      if (value > 0) countDisplay.style.color = '#10b981';
+      else if (value < 0) countDisplay.style.color = '#ef4444';
+      else countDisplay.style.color = '#2563eb';
+    }
+  </script>
+
+</body>
+</html>
